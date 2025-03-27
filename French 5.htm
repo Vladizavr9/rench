@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Учебный материал</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: #f9f9f9;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .block {
+            width: 90%;
+            max-width: 700px;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            position: relative;
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: #333;
+            background-size: cover;
+            min-height: 200px;
+        }
+
+        h2 {
+            font-size: 1.6em;
+            margin: 5px 0 10px;
+            color: #000;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 1.1em;
+            box-sizing: border-box;
+            resize: vertical;
+            min-height: 100px;
+            overflow-y: auto;
+            height: calc(100% - 44px);
+            background-color: #fff;
+            color: #000;
+        }
+
+        #pratiqueBlock {
+            min-height: auto;
+            padding: 10px;
+        }
+
+        #pratiqueBlock img {
+            max-width: 50%;
+            max-height: 200px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            display: block;
+            margin: 10px auto;
+        }
+
+        .arrow-button {
+            background-color: transparent;
+            border: none;
+            font-size: 2em;
+            cursor: pointer;
+            color: #888;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        .arrow-button:hover {
+            color: #555;
+        }
+
+        .arrow-left {
+            left: 10px;
+        }
+
+        .arrow-right {
+            right: 10px;
+        }
+
+        .block-content {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .expand-button {
+            background-color: transparent;
+            border: none;
+            color: rgba(76, 175, 80, 0.5);
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        .expand-button:hover {
+            color: rgba(62, 142, 65, 0.8);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="block" id="onCommenceBlock">
+            <h2>On commence</h2>
+            <textarea id="onCommenceInput" rows="6">
+– Salut Carla ! Ça va ?
+– Oui, ça va, et toi ?
+– Ça va bien, merci !
+
+A — [a], B — [be], C — [se],
+D — [de], E — [ə], F — [ɛf],
+G — [ʒe], H — [aʃ], I — [i],
+J — [ʒi], K — [ka], L — [ɛl],
+M — [ɛm], N — [ɛn], O — [o],
+P — [pe], Q — [ky], R — [ɛʁ],
+S — [ɛs], T — [te], U — [y],
+V — [ve], W — [dubləve], X — [iks],
+Y — [iɡʁɛk], Z — [zɛd].
+
+Bonjour, je m’appelle Diego.
+Bonjour Diego! Comment ça s'écrit ?
+D-I-E-G-O
+Merci! Comment vous appelez-vous ? 
+     (Comment tu t'appelles?)
+
+-EN, -AN [ɑ̃]: enfant, chant, pensée
+-IN, -AIN, -EIN [ɛ̃]: vin, pain
+-ON [ɔ̃]: bonbon, maison, pont
+-UN [œ̃]: lundi, un, brun
+
+- Bonjour !
+- Bonjour.
+- C'est combien ?
+- C'est 5 euros.
+- D'accord. Je le prends. / Non. C'est trop cher
+
+            </textarea>
+            <button class="expand-button" data-target="onCommenceInput">️</button>
+        </div>
+
+        <!-- Первый блок с аудио -->
+        <div class="block" id="audioBlock1">
+            <h2>Audio 1</h2>
+            <audio class="audio-player" controls>
+                <source src="56y.mp3" type="audio/mpeg">
+                <source src="56y.ogg" type="audio/ogg">
+                <source src="09_Edito_A1_Livre.mp3" type="audio/mpeg">
+                <source src="09_Edito_A1_Livre.ogg" type="audio/ogg">  <!-- Add .ogg as a backup -->
+                Ваш браузер не поддерживает элемент audio.
+            </audio>
+            <button class="expand-button" data-target="audioBlock1">️</button>
+        </div>
+
+        <!-- Блок изображения -->
+        <div class="block" id="imageBlock">
+            <h2>Image</h2>
+            <img src="https://i.ibb.co/3YPyPC0n/1.png" alt="Image 1" style="width: 100%; max-width: 500px;">
+            <button class="expand-button" data-target="imageBlock">️</button>
+        </div>
+
+        <!-- Practice Block -->
+        <div class="block" id="pratiqueBlock">
+            <h2>Pratique</h2>
+            <div class="block-content">
+                <img id="picture" src="https://i.ibb.co/gFQkWpTC/1.png" alt="1" class="slider-image">
+                <button class="arrow-button arrow-left" onclick="changePicture(-1)">&#10094;</button>
+                <button class="arrow-button arrow-right" onclick="changePicture(1)">&#10095;</button>
+            </div>
+            <button class="expand-button" data-target="practiceInput">️</button>
+        </div>
+
+        <!-- Второй блок с аудио -->
+        <div class="block" id="audioBlock2">
+            <h2>Audio 2</h2>
+            <audio class="audio-player" controls>
+                <source src="78r.mp3" type="audio/mpeg">
+                <source src="78r.ogg" type="audio/ogg">  <!-- Add .ogg as a backup -->
+                Ваш браузер не поддерживает элемент audio.
+            </audio>
+            <button class="expand-button" data-target="audioBlock2">️</button>
+        </div>
+
+        <div class="block" id="vocabulaireBlock">
+            <h2>Vocabulaire</h2>
+            <img src="https://i.ibb.co/5dDCvZg/2.png" alt="Vocabulaire Image" style="width: 60%;">
+            <button class="expand-button" data-target="vocabulaireBlock">️</button>
+        </div>
+
+        <div class="block" id="dialogueBlock">
+            <h2>Dialogues</h2>
+            <textarea id="dialogueInput" rows="6">
+A: Bonjour! Quel jour sommes-nous aujourd’hui?
+B: Bonjour! Aujourd’hui, c’est lundi.
+A: Et demain, c’est quel jour?
+B: Demain, c’est mardi.
+A: Et après-demain?
+B: Après-demain, c’est mercredi.
+A: D’accord. Et le week-end, c’est quels jours?
+B: Le week-end, c’est samedi et dimanche.
+A: Merci!
+            </textarea>
+            <button class="expand-button" data-target="dialogueInput">️</button>
+        </div>
+
+        <div class="block" id="discussionBlock">
+            <h2>Discussion</h2>
+            <textarea id="discussionInput" rows="6">
+- Say the French alphabet
+- Say "Hi" / "Hello"
+- Ask "How much is it?"
+- Ask "How are you?"
+- Name "The days of the week"
+- Count from 1 - 30.
+- Say "My name is Lana"
+- Ask "It's 5 euros."
+- Say "I'm fine. And you?"
+- Say "Very good!"
+- Ask "What day is it today?"
+- Say "How do you spell it?"
+- Say "Thank you"
+- Ask "Ok, I'll take it"
+- Ask "Good bye"
+- Say "What's your name?" (x2)
+- Ask "See you tomorrow"
+- Say "Today"
+- Say "sir, madame"
+- Say "It's too expensive."
+- Say "the weekend"
+            </textarea>
+            <button class="expand-button" data-target="discussionInput">️</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const blockIds = ['onCommenceBlock', 'audioBlock1', 'imageBlock', 'audioBlock2', 'vocabulaireBlock', 'dialogueBlock', 'pratiqueBlock', 'discussionBlock'];
+
+            function generateGradient() {
+                const hue = Math.floor(Math.random() * 360);
+                const saturation = 70;
+                const lightness = 85;
+
+                return `linear-gradient(to right, hsl(${hue}, ${saturation}%, ${lightness}%), white)`;
+            }
+
+            blockIds.forEach(blockId => {
+                const block = document.getElementById(blockId);
+                block.style.backgroundImage = generateGradient();
+            });
+
+            const expandButtons = document.querySelectorAll('.expand-button');
+            expandButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetId = button.dataset.target;
+                    const textarea = document.getElementById(targetId);
+
+                    if (textarea) {
+                        if (textarea.style.height === 'auto' || textarea.style.height === '') {
+                            textarea.style.height = textarea.scrollHeight + "px";
+                        } else {
+                            textarea.style.height = '';
+                        }
+                    }
+                });
+            });
+
+            const pictures = [
+                "https://i.ibb.co/gFQkWpTC/1.png",
+                "https://i.ibb.co/bRm101ZX/2.png",
+                "https://i.ibb.co/zWFZvJGv/3.png",
+                "https://i.ibb.co/5Csqhvj/4.png",
+                "https://i.ibb.co/N6gGCfbs/5.png",
+                "https://i.ibb.co/5WvmqHYN/6.png"
+            ];
+
+            let currentPictureIndex = 0;
+            const pictureImg = document.querySelector('#pratiqueBlock img');
+
+            function updatePicture() {
+                pictureImg.src = pictures[currentPictureIndex];
+            }
+
+            window.changePicture = function(direction) {
+                currentPictureIndex += direction;
+                if (currentPictureIndex < 0) {
+                    currentPictureIndex = pictures.length - 1;
+                } else if (currentPictureIndex >= pictures.length) {
+                    currentPictureIndex = 0;
+                }
+                updatePicture();
+            };
+
+            updatePicture();
+        });
+    </script>
+
+</body>
+</html>
